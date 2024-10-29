@@ -17,7 +17,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-background border border-border p-2 rounded-md shadow-md">
-        <p className="text-foreground">{`Score: ${payload[0].value.toFixed(1)}%`}</p>
+        <p className="text-foreground">{`Score: ${payload[0].value.toFixed(2)}%`}</p>
         <p className="text-muted-foreground text-sm">{payload[0].payload.time}</p>
       </div>
     );
@@ -52,7 +52,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
   };
 
   return (
-    <Link href={`/movie/${encodeURIComponent(movie.title)}`}>
+     <Link href={`/movie/${encodeURIComponent(movie.title)}`}>
       <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
         <div className="flex justify-between items-start mb-4">
           <div>
@@ -60,7 +60,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
             <div className="flex gap-2 mt-2">
               {movie.actual_count > 0 && (
                 <Badge variant={movie.percent_score >= 60 ? "default" : "destructive"}>
-                  {movie.percent_score.toFixed(1)}%
+                  {movie.percent_score}%
                 </Badge>
               )}
               <Badge variant="secondary">
@@ -130,26 +130,26 @@ export default function MovieCard({ movie }: MovieCardProps) {
             <div className="mt-4 space-y-4">
               <div>
                 <div className="flex justify-between text-sm mb-2">
-                  <span className="text-muted-foreground">Liked vs Disliked</span>
-                  <span>{((movie.num_liked / (movie.num_liked + movie.num_disliked)) * 100).toFixed(1)}%</span>
+                  <span className="text-muted-foreground"></span>
+                  <span>{((movie.num_liked / (movie.num_liked + movie.num_disliked)) * 100).toFixed(2)}%</span>
                 </div>
                 <Progress value={(movie.num_liked / (movie.num_liked + movie.num_disliked)) * 100} />
               </div>
               
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <span className="text-muted-foreground">High</span>
-                  <p className="font-medium">{movie.high}%</p>
+                  <span className="text-muted-foreground">{movie.disliked} rot(s) to get to</span>
+                  <p className="font-medium">{movie.low}%</p>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">Low</span>
-                  <p className="font-medium">{movie.low}%</p>
+                  <span className="text-muted-foreground">{movie.liked} fresh(es) to get above</span>
+                  <p className="font-medium">{movie.high}%</p>
                 </div>
               </div>
             </div>
           </>
         )}
       </Card>
-    </Link>
+     </Link>
   );
 }

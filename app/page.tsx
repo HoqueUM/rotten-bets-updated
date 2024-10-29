@@ -8,10 +8,10 @@ export default function Home() {
         <div className="container mx-auto px-4 py-8">
           <header className="mb-8 text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <h1 className="text-4xl font-bold tracking-tight">Rotten Tomatoes Tracker</h1>
+              <h1 className="text-4xl font-bold tracking-tight">RotKings</h1>
             </div>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Track and analyze Rotten Tomatoes scores for upcoming and current movies
+              The #1 place to track and analyze Rotten Tomatoes scores for Kalshi
             </p>
           </header>
           

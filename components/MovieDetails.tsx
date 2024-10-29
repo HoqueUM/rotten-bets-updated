@@ -13,8 +13,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { useSession } from 'next-auth/react';
-import { signIn } from 'next-auth/react';
+//import { useSession } from 'next-auth/react';
+//import { signIn } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -31,7 +31,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 
 export function MovieDetails({ title }: { title: string }) {
   const { movies, loading, error } = useMovies();
-  const { data: session } = useSession();
+  //const { data: session } = useSession();
   const [zoomDomain, setZoomDomain] = useState({ start: 0, end: 0 });
   const [yDomain, setYDomain] = useState<[number, number]>([0, 100]);
 
@@ -88,9 +88,9 @@ export function MovieDetails({ title }: { title: string }) {
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <h1 className="text-4xl font-bold">{movie.title}</h1>
-        {!session && (
+        {/* {!session && (
           <Button onClick={() => signIn()}>Sign in to track this movie</Button>
-        )}
+        )} */}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

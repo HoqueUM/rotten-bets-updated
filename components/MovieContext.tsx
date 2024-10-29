@@ -12,6 +12,8 @@ export type Movie = {
   percent_score: number;
   actual_score: number;
   actual_count: number;
+  disliked: number;
+  liked: number;
   num_liked: number;
   num_disliked: number;
   timestamps: MovieTimestamp[];

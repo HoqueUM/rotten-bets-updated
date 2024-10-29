@@ -7,8 +7,8 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Rotten Tomatoes Tracker',
-  description: 'Track and analyze Rotten Tomatoes scores for movies',
+  title: 'RotKings',
+  description: 'Track and analyze Rotten Tomatoes scores for Kalshi',
 };
 
 export default function RootLayout({
@@ -26,7 +26,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          {children}
+          <div className="pt-14"> {/* Add padding-top to account for the navbar height */}
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>
