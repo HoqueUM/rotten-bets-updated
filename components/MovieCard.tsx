@@ -18,7 +18,6 @@ const CustomTooltip = ({ active, payload }: any) => {
     return (
       <div className="bg-background border border-border p-2 rounded-md shadow-md">
         <p className="text-foreground">{`Score: ${payload[0].value.toFixed(2)}%`}</p>
-        <p className="text-muted-foreground text-sm">{payload[0].payload.time}</p>
       </div>
     );
   }
@@ -59,11 +58,11 @@ export default function MovieCard({ movie }: MovieCardProps) {
             <h3 className="text-xl font-semibold">{movie.title}</h3>
             <div className="flex gap-2 mt-2">
               {movie.actual_count > 0 && (
-                <Badge variant={movie.percent_score >= 60 ? "default" : "destructive"}>
+                <Badge variant={movie.percent_score >= 60 ? "default" : "destructive"} className="text-base">
                   {movie.percent_score}%
                 </Badge>
               )}
-              <Badge variant="secondary">
+              <Badge variant="secondary" className="text-base">
                 {movie.actual_count} reviews
               </Badge>
             </div>
@@ -77,7 +76,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
 
         {movie.actual_count > 0 && (
           <>
-            <div className="h-[200px] mt-4">
+            <div className="z-0 h-[200px] mt-4">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={validTimestamps.slice(zoomDomain.start, zoomDomain.end + 1)}>
                   <XAxis dataKey="time" tick={false} />
@@ -129,23 +128,23 @@ export default function MovieCard({ movie }: MovieCardProps) {
 
             <div className="mt-4 space-y-4">
               <div>
-                <div className="flex justify-between text-sm mb-2">
+                {/* <div className="flex justify-between text-sm mb-2">
                   <span className="text-muted-foreground"></span>
                   <span>{((movie.num_liked / (movie.num_liked + movie.num_disliked)) * 100).toFixed(2)}%</span>
-                </div>
+                </div> */}
                 {/* <Progress value={(movie.num_liked / (movie.num_liked + movie.num_disliked)) * 100} /> */}
               </div>
               
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <span className="text-muted-foreground">{movie.disliked} rot(s) to get to</span>
-                  <p className="font-medium">{movie.low}%</p>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">{movie.liked} fresh(es) to get above</span>
-                  <p className="font-medium">{movie.high}%</p>
-                </div>
+              <div className="grid grid-cols-2 gap-4 text-center">
+              <div>
+                <span className="text-muted-foreground text-base">{movie.disliked} rot(s) to get to</span>
+                <p className="font-medium text-lg">{movie.low}%</p>
               </div>
+              <div>
+                <span className="text-muted-foreground text-base">{movie.liked} fresh(es) to get above</span>
+                <p className="font-medium text-lg">{movie.high}%</p>
+              </div>
+            </div>
             </div>
           </>
         )}
