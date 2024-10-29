@@ -3,7 +3,7 @@
 import { useMovies } from './MovieContext';
 import { Card } from './ui/card';
 import { Badge } from './ui/badge';
-import { Progress } from './ui/progress';
+//import { Progress } from './ui/progress';
 import { Button } from './ui/button';
 import {
   LineChart,
@@ -175,7 +175,7 @@ export function MovieDetails({ title }: { title: string }) {
                 <span className="text-muted-foreground">Review Count</span>
                 <span>{movie.actual_count}</span>
               </div>
-              <Progress value={(movie.actual_count / 200) * 100} />
+              {/* <Progress value={(movie.actual_count / 200) * 100} /> */}
             </div>
 
             <div>
@@ -189,12 +189,12 @@ export function MovieDetails({ title }: { title: string }) {
                   %
                 </span>
               </div>
-              <Progress
+              {/* <Progress
                 value={
                   (movie.num_liked / (movie.num_liked + movie.num_disliked)) *
                   100
                 }
-              />
+              /> */}
             </div>
 
             <div className="grid grid-cols-2 gap-4">

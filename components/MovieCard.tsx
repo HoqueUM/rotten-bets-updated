@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Movie } from "./MovieContext";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { Badge } from "./ui/badge";
-import { Progress } from "./ui/progress";
+//import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -52,7 +52,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
   };
 
   return (
-     <Link href={`/movie/${encodeURIComponent(movie.title)}`}>
+     //<Link href={`/movie/${encodeURIComponent(movie.title)}`}>
       <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
         <div className="flex justify-between items-start mb-4">
           <div>
@@ -133,7 +133,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
                   <span className="text-muted-foreground"></span>
                   <span>{((movie.num_liked / (movie.num_liked + movie.num_disliked)) * 100).toFixed(2)}%</span>
                 </div>
-                <Progress value={(movie.num_liked / (movie.num_liked + movie.num_disliked)) * 100} />
+                {/* <Progress value={(movie.num_liked / (movie.num_liked + movie.num_disliked)) * 100} /> */}
               </div>
               
               <div className="grid grid-cols-2 gap-4 text-sm">
@@ -150,6 +150,6 @@ export default function MovieCard({ movie }: MovieCardProps) {
           </>
         )}
       </Card>
-     </Link>
+     //</Link>
   );
 }
