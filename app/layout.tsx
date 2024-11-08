@@ -7,7 +7,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'RotKings',
+  title: 'Rot Kings',
   description: 'Track and analyze Rotten Tomatoes scores for Kalshi',
 };
 

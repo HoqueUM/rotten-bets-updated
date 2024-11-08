@@ -57,21 +57,25 @@ export default function MovieCard({ movie }: MovieCardProps) {
           <div>
             <h3 className="text-xl font-semibold">{movie.title}</h3>
             <div className="flex gap-2 mt-2">
-              {movie.actual_count > 0 && (
-                <Badge variant={movie.percent_score >= 60 ? "default" : "destructive"} className="text-base">
-                  {movie.percent_score}%
-                </Badge>
-              )}
-              <Badge variant="secondary" className="text-base">
-                {movie.actual_count} reviews
+            {movie.actual_count > 0 && (
+              <Badge
+                variant={
+                  scoreChange === 0
+                    ? "default"
+                    : scoreChange > 0
+                    ? "constructive"
+                    : "destructive"
+                }
+                className="text-lg px-4 py-1"
+              >
+                {movie.percent_score}% ({movie.actual_count}%, {scoreChange > 0 ? "+" : ""}{scoreChange.toFixed(2)}%)
               </Badge>
-            </div>
-          </div>
-          {scoreChange !== 0 && (
-            <Badge variant={scoreChange > 0 ? "default" : "destructive"}>
-              {scoreChange > 0 ? "+" : ""}{scoreChange.toFixed(2)}%
+            )}
+            <Badge variant="secondary" className="text-lg px-4 py-1">
+              {movie.actual_count} reviews
             </Badge>
-          )}
+            </div>
+            </div>
         </div>
 
         {movie.actual_count > 0 && (
