@@ -16,6 +16,17 @@ export default function Home() {
           </header>
           
           <MovieList />
+
+          <div className="mt-8 text-center">
+            <a
+              href="https://ko-fi.com/rahulhoque"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#5A2E0E] text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-[#4A2E0F] focus:outline-none focus:ring-2 focus:ring-[#A52A2A] focus:ring-offset-2"
+            >
+              Buy me a Ko-Fi!
+            </a>
+          </div>
         </div>
       </main>
     </MovieProvider>

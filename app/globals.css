@@ -34,8 +34,8 @@
     --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --constructive: 120 60% 50%; /* New constructive color */
-    --constructive-foreground: 0 0% 98%; /* New constructive foreground color */
+    --constructive: 120 60% 50%; /* Green color */
+    --constructive-foreground: 0 0% 98%;
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
@@ -63,8 +63,8 @@
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --constructive: 120 60% 40%; /* New constructive color for dark mode */
-    --constructive-foreground: 0 0% 98%; /* New constructive foreground color for dark mode */
+    --constructive: 120 60% 40%; /* Darker green color for dark mode */
+    --constructive-foreground: 0 0% 98%;
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
