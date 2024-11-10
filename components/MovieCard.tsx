@@ -66,12 +66,12 @@ export default function MovieCard({ movie }: MovieCardProps) {
                     ? "constructive"
                     : "destructive"
                 }
-                className="text-lg px-4 py-1"
+                className="text-xs sm:text-lg px-2 sm:px-4 py-1"
               >
-                {movie.percent_score}% ({movie.actual_count}%, {scoreChange > 0 ? "+" : ""}{scoreChange.toFixed(2)}%)
+                {movie.percent_score}% ({movie.actual_score}%, {scoreChange > 0 ? "+" : ""}{scoreChange.toFixed(2)}%)
               </Badge>
             )}
-            <Badge variant="secondary" className="text-lg px-4 py-1">
+            <Badge variant="secondary" className="text-xs sm:text-lg px-2 sm:px-4 py-1">
               {movie.actual_count} reviews
             </Badge>
             </div>
