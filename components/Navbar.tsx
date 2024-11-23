@@ -12,7 +12,9 @@ export function Navbar() {
             <p className="text-xl font-semibold">Rot Kings</p>
           </Link>
         </div>
-        <ThemeToggle />
+        <div className="ml-auto pr-4">
+          <ThemeToggle />
+        </div>
       </div>
     </nav>
   );

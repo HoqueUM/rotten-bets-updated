@@ -19,7 +19,7 @@ export type Movie = {
   };
 
   export async function generateStaticParams() {
-    const url = `https://rotten-bets-backend.onrender.com/check_all_movies`;
+    const url = `https://rotten-bets-backend.onrender.com/all_movies`;
     
     const movies: Movie[] = await fetch(url).then((res) => res.json());
     return movies.map((movie) => {
