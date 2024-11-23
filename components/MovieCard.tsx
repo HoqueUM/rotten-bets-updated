@@ -51,7 +51,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
   };
 
   return (
-     <Link href={`/movie/${encodeURIComponent(movie.title.replace(/ /g, '_'))}`}>
+     <Link href={`/movie/${encodeURIComponent(movie.title.replace(/ /g, '_'))}`} target="_blank">
       <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
         <div className="flex justify-between items-start mb-4">
           <div>
