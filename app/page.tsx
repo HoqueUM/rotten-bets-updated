@@ -16,7 +16,6 @@ export default function Home() {
           </header>
           
           <MovieList />
-
           <div className="mt-8 text-center">
             <a
               href="https://ko-fi.com/rahulhoque"
@@ -27,6 +26,11 @@ export default function Home() {
               Buy me a Ko-Fi!
             </a>
           </div>
+        </div>
+        <div className="flex h-14 items-center justify-center">
+        <div className="pl-4 flex items-center justify-center">
+            <p>Made with ❤️ by <a href="https://www.linkedin.com/in/rahul-hoque/" target="_blank" rel="noopener noreferrer" className="text-decoration-line: underline"> Rahul Hoque</a></p>
+            </div>
         </div>
       </main>
     </MovieProvider>

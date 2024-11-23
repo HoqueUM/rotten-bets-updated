@@ -10,8 +10,13 @@ export default function MovieList() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-[200px]">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      <div> 
+      <div className="flex flex-col gap-4 justify-center items-center min-h-[200px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary">
+        </div>
+        <p>One moment, we're loading the latest movies!</p>
+      </div>
+      <div className="h-screen" />
       </div>
     );
   }

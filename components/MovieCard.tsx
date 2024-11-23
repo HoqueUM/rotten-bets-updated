@@ -51,7 +51,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
   };
 
   return (
-     //<Link href={`/movie/${encodeURIComponent(movie.title)}`}>
+     <Link href={`/movie/${encodeURIComponent(movie.title.replace(/ /g, '_'))}`}>
       <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
         <div className="flex justify-between items-start mb-4">
           <div>
@@ -91,7 +91,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
                     dataKey="score"
                     stroke="hsl(var(--primary))"
                     strokeWidth={2}
-                    dot={true}
+                    dot={false}
                   />
                 </LineChart>
               </ResponsiveContainer>
@@ -153,6 +153,6 @@ export default function MovieCard({ movie }: MovieCardProps) {
           </>
         )}
       </Card>
-     //</Link>
+     </Link>
   );
 }
