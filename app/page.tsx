@@ -27,6 +27,11 @@ export default function Home() {
             </a>
           </div>
         </div>
+        <div className="flex h-14 items-center justify-center">
+        <div className="pl-4 flex items-center justify-center">
+            <p>Made with ❤️ by <a href="https://www.linkedin.com/in/rahul-hoque/" target="_blank" rel="noopener noreferrer" className="text-decoration-line: underline"> Rahul Hoque</a></p>
+            </div>
+        </div>
       </main>
     </MovieProvider>
   );
