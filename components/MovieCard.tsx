@@ -18,8 +18,12 @@ export default function MovieCard({ movie }: MovieCardProps) {
     : 0;
 
   return (
-    <Link href={`/movie/${encodeURIComponent(movie.title)}`} target="_blank">
-      <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
+    <Card className="p-6">
+      <Link 
+        href={`/movie/${encodeURIComponent(movie.title)}`} 
+        target="_blank"
+        className="block hover:opacity-80 transition-opacity"
+      >
         <div className="flex justify-between items-start mb-4">
           <div>
             <h3 className="text-xl font-semibold">{movie.title}</h3>
@@ -44,28 +48,33 @@ export default function MovieCard({ movie }: MovieCardProps) {
             </div>
           </div>
         </div>
+      </Link>
 
-        {movie.actual_count > 0 && (
-          <>
-            <div className="z-0 h-[200px] mt-4">
-              <TimeSeriesChart data={validTimestamps} yDomain={[movie.low - 5, movie.high + 5]} />
-            </div>
-
-            <div className="mt-4 space-y-4">
-              <div className="grid grid-cols-2 gap-4 text-center">
-                <div>
-                  <span className="text-muted-foreground text-base">{movie.disliked} rot(s) to get to</span>
-                  <p className="font-medium text-lg">{movie.low}%</p>
-                </div>
-                <div>
-                  <span className="text-muted-foreground text-base">{movie.liked} fresh(es) to get above</span>
-                  <p className="font-medium text-lg">{movie.high}%</p>
-                </div>
+      {movie.actual_count > 0 && (
+        <>
+          <div className="z-0 h-[200px] mt-4">
+            <TimeSeriesChart data={validTimestamps} yDomain={[movie.low - 5, movie.high + 5]} />
+          </div>
+          <Link 
+              href={`/movie/${encodeURIComponent(movie.title)}`} 
+              target="_blank"
+              className="block hover:opacity-80 transition-opacity"
+            >
+          <div className="mt-4 space-y-4">
+            <div className="grid grid-cols-2 gap-4 text-center">
+              <div>
+                <span className="text-muted-foreground text-base">{movie.disliked} rot(s) to get to</span>
+                <p className="font-medium text-lg">{movie.low}%</p>
+              </div>
+              <div>
+                <span className="text-muted-foreground text-base">{movie.liked} fresh(es) to get above</span>
+                <p className="font-medium text-lg">{movie.high}%</p>
               </div>
             </div>
-          </>
-        )}
-      </Card>
-    </Link>
+          </div>
+          </Link>
+        </>
+      )}
+    </Card>
   );
 }
