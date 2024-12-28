@@ -12,6 +12,8 @@ interface Timestamp {
 interface TimeSeriesChartProps {
   data: Timestamp[];
   yDomain: [number, number];
+  showControls?: boolean;
+  size?: 'default' | 'large';
 }
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -25,7 +27,12 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
-const TimeSeriesChart: React.FC<TimeSeriesChartProps> = ({ data, yDomain }) => {
+const TimeSeriesChart: React.FC<TimeSeriesChartProps> = ({ 
+  data, 
+  yDomain,
+  showControls = true,
+  size = 'default'
+}) => {
   const [zoomDomain, setZoomDomain] = useState({ start: 0, end: data.length - 1 });
   const [currentYDomain, setCurrentYDomain] = useState<[number, number]>(yDomain);
 
@@ -43,32 +50,75 @@ const TimeSeriesChart: React.FC<TimeSeriesChartProps> = ({ data, yDomain }) => {
     setZoomDomain({ start, end });
   };
 
+  const chartHeight = size === 'large' ? 'h-[400px] sm:h-[500px]' : 'h-[200px]';
+
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full">
-      <div className="w-full h-64 sm:h-96 lg:w-[500px] lg:h-[300px]">
+    <div className={`w-full ${chartHeight} flex flex-col`}>
+      <div className="flex-1 min-h-0">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data.slice(zoomDomain.start, zoomDomain.end + 1)}>
-            <XAxis dataKey="time" tick={false} />
-            <YAxis domain={currentYDomain} />
+          <LineChart
+            data={data.slice(zoomDomain.start, zoomDomain.end + 1)}
+            margin={{ top: 5, right: 5, left: 25, bottom: 5 }}
+          >
+            <XAxis 
+              dataKey="time" 
+              tick={false}
+              height={20}
+            />
+            <YAxis 
+              domain={currentYDomain}
+              width={35}
+              tickFormatter={(value) => `${value}%`}
+              tick={{ fontSize: 10 }}
+            />
             <Tooltip content={<CustomTooltip />} />
-            <Line type="monotone" dataKey="score" stroke="hsl(var(--primary))" strokeWidth={2} dot={false} />
+            <Line 
+              type="monotone" 
+              dataKey="score" 
+              stroke="hsl(var(--primary))" 
+              strokeWidth={2} 
+              dot={false}
+              isAnimationActive={false}
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>
-      <div className="flex justify-center gap-2 mt-4">
-        <Button variant="outline" size="sm" onClick={() => handlePredefinedZoom(5)}>
-          Last 5
-        </Button>
-        <Button variant="outline" size="sm" onClick={() => handlePredefinedZoom(10)}>
-          Last 10
-        </Button>
-        <Button variant="outline" size="sm" onClick={() => handlePredefinedZoom(20)}>
-          Last 20
-        </Button>
-        <Button variant="outline" size="sm" onClick={() => setZoomDomain({ start: 0, end: data.length - 1 })}>
-          All
-        </Button>
-      </div>
+      {showControls && (
+        <div className="flex flex-wrap justify-center gap-1 mt-2">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={() => handlePredefinedZoom(5)}
+            className="h-6 text-xs px-2"
+          >
+            Last 5
+          </Button>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={() => handlePredefinedZoom(10)}
+            className="h-6 text-xs px-2"
+          >
+            Last 10
+          </Button>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={() => handlePredefinedZoom(20)}
+            className="h-6 text-xs px-2"
+          >
+            Last 20
+          </Button>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={() => setZoomDomain({ start: 0, end: data.length - 1 })}
+            className="h-6 text-xs px-2"
+          >
+            All
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
