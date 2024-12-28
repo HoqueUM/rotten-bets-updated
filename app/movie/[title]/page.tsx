@@ -22,10 +22,10 @@ export type Movie = {
     liked: number;
     num_liked: number;
     num_disliked: number;
-    timestamps: Timestamp[];
+    timestamps?: Timestamp[];
     high: number;
     low: number;
-    emsReviews: emsReview[];
+    emsReviews?: emsReview[];
 };
 
 async function fetchMovie(title: string): Promise<Movie> {
@@ -62,17 +62,19 @@ export default async function Page({ params }: { params: { title: string } }) {
 
     if (movie.actual_count === 0) {
         return (
-            <div className="flex justify-center items-center min-h-screen">
-                <div className="text-center">
-                    <h1 className="text-4xl sm:text-6xl font-bold mb-6">{movie.title}</h1>
-                    <p className="text-xl text-muted-foreground">No reviews, check back soon.</p>
+            <div className='flex justify-center items-center flex-col p-4 pb-2'>
+                <div className="flex justify-center items-center flex-col p-4 mt-12 max-w-6xl w-full">
+                    <div className="text-center">
+                        <h1 className="text-4xl sm:text-6xl font-bold text-center mb-6">{movie.title}</h1>
+                        <p className="text-xl text-muted-foreground">No reviews, check back soon.</p>
+                    </div>
                 </div>
             </div>
         );
     }
 
-    const validTimestamps = movie.timestamps.filter(t => t.score > 0);
-    
+    const validTimestamps = movie.timestamps?.filter(t => t.score > 0) || [];
+
     return (
         <div className='flex justify-center items-center flex-col p-4 pb-2'>
             <div className='flex justify-center items-center flex-col p-4 mt-12 max-w-6xl w-full' style={{ maxHeight: 'calc(100vh - 5rem)' }}>
@@ -92,18 +94,22 @@ export default async function Page({ params }: { params: { title: string } }) {
                     <p className='mb-2'>{movie.liked} fresh(es) to get above {movie.high}%</p>
                     <p>{movie.disliked} rot(s) to get to {movie.low}%</p>
                 </div>
-                <div className="w-full px-4">
-                    <TimeSeriesChart 
-                        data={validTimestamps} 
-                        yDomain={[movie.low - 5, movie.high + 5]}
-                        showControls={true}
-                        size="default"
-                    />
+                {validTimestamps.length > 0 && (
+                    <div className="w-full px-4">
+                        <TimeSeriesChart 
+                            data={validTimestamps} 
+                            yDomain={[movie.low - 5, movie.high + 5]}
+                            showControls={true}
+                            size="default"
+                        />
+                    </div>
+                )}
+            </div>
+            {movie.emsReviews && movie.emsReviews.length > 0 && (
+                <div className='pt-2'>
+                    <ReviewsList reviews={movie.emsReviews} />
                 </div>
-            </div>
-            <div className='pt-2'>
-                <ReviewsList reviews={movie.emsReviews} />
-            </div>
+            )}
         </div>
     );
 }
