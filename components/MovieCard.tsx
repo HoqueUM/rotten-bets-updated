@@ -19,11 +19,11 @@ export default function MovieCard({ movie }: MovieCardProps) {
 
   return (
     <Card className="p-6">
-      <Link 
+      {/* <Link 
         href={`/movie/${encodeURIComponent(movie.title)}`} 
         target="_blank"
         className="block hover:opacity-80 transition-opacity"
-      >
+      > */}
         <div className="flex justify-between items-start mb-4">
           <div>
             <h3 className="text-xl font-semibold">{movie.title}</h3>
@@ -48,7 +48,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
             </div>
           </div>
         </div>
-      </Link>
+      {/* </Link> */}
 
       {movie.actual_count > 0 && (
         <>
