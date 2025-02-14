@@ -1,22 +1,79 @@
 "use client";
 
-import { useMovies } from "./MovieContext";
-import MovieCard from "./MovieCard";
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 import { RefreshCcw } from "lucide-react";
 import { Button } from "./ui/button";
+import MovieCard from "./MovieCard";
+
+type MovieTimestamp = {
+  score: number;
+  time: string;
+};
+
+type Movie = {
+  title: string;
+  percent_score: number;
+  actual_score: number;
+  actual_count: number;
+  disliked: number;
+  liked: number;
+  num_liked: number;
+  num_disliked: number;
+  timestamps: MovieTimestamp[];
+  high: number;
+  low: number;
+};
+
+async function getAllItemsInCurrent(): Promise<Movie[]> {
+  const currentCollection = collection(db, 'current');
+  const querySnapshot = await getDocs(currentCollection);
+  
+  const items: Movie[] = [];
+  querySnapshot.forEach(doc => {
+    items.push(doc.data() as Movie);
+  });
+  
+  return items;
+}
 
 export default function MovieList() {
-  const { movies, loading, error, refreshData } = useMovies();
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchData = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await getAllItemsInCurrent();
+      setMovies(data);
+    } catch (err) {
+      console.error('Error fetching data:', err);
+      setError('Failed to fetch data');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const refreshData = () => {
+    fetchData();
+  };
 
   if (loading) {
     return (
       <div> 
-      <div className="flex flex-col gap-4 justify-center items-center min-h-[200px]">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary">
+        <div className="flex flex-col gap-4 justify-center items-center min-h-[200px]">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary">
+          </div>
+          <p>One moment, we&apos;re loading the latest movies!</p>
         </div>
-        <p>One moment, we're loading the latest movies!</p>
-      </div>
-      <div className="h-screen" />
+        <div className="h-screen" />
       </div>
     );
   }
