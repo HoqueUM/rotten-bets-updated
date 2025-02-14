@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import db  from '@/lib/firebase';
 import { RefreshCcw } from "lucide-react";
 import { Button } from "./ui/button";
 import MovieCard from "./MovieCard";
