@@ -83,42 +83,7 @@ const TimeSeriesChart: React.FC<TimeSeriesChartProps> = ({
           </LineChart>
         </ResponsiveContainer>
       </div>
-      {showControls && (
-        <div className="flex flex-wrap justify-center gap-1 mt-2">
-          <Button 
-            variant="outline" 
-            size="sm" 
-            onClick={() => handlePredefinedZoom(5)}
-            className="h-6 text-xs px-2"
-          >
-            Last 5
-          </Button>
-          <Button 
-            variant="outline" 
-            size="sm" 
-            onClick={() => handlePredefinedZoom(10)}
-            className="h-6 text-xs px-2"
-          >
-            Last 10
-          </Button>
-          <Button 
-            variant="outline" 
-            size="sm" 
-            onClick={() => handlePredefinedZoom(20)}
-            className="h-6 text-xs px-2"
-          >
-            Last 20
-          </Button>
-          <Button 
-            variant="outline" 
-            size="sm" 
-            onClick={() => setZoomDomain({ start: 0, end: data.length - 1 })}
-            className="h-6 text-xs px-2"
-          >
-            All
-          </Button>
-        </div>
-      )}
+      {showControls}
     </div>
   );
 };

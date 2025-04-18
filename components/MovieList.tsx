@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import db  from '@/lib/firebase';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { RefreshCcw } from "lucide-react";
 import { Button } from "./ui/button";
 import MovieCard from "./MovieCard";
@@ -67,13 +69,23 @@ export default function MovieList() {
 
   if (loading) {
     return (
-      <div> 
-        <div className="flex flex-col gap-4 justify-center items-center min-h-[200px]">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary">
-          </div>
-          <p>One moment, we&apos;re loading the latest movies!</p>
-        </div>
-        <div className="h-screen" />
+      <div className="space-y-6">
+        {[...Array(3)].map((_, i) => (
+          <Card key={i}>
+            <CardHeader className="pb-2">
+              <Skeleton className="h-6 w-3/4" />
+            </CardHeader>
+            <CardContent>
+              <Skeleton className="h-48 w-full" />
+              <div className="mt-4 grid grid-cols-2 gap-4">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-full" />
+              </div>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     );
   }
