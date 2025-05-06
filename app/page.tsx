@@ -1,5 +1,7 @@
 import MovieList from "@/components/MovieList";
+import SecondaryMovieList from "@/components/SecondaryMovieList";
 import { MovieProvider } from "@/components/MovieContext";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Home() {
   return (
@@ -15,7 +17,19 @@ export default function Home() {
             </p>
           </header>
           
-          <MovieList />
+          {/* <Tabs defaultValue="primary" className="mb-8">
+            <TabsList className="grid w-full grid-cols-2 mb-6">
+              <TabsTrigger value="primary">Active Markets</TabsTrigger>
+              <TabsTrigger value="secondary">Archive</TabsTrigger>
+            </TabsList>
+            <TabsContent value="primary"> */}
+              <MovieList />
+            {/* </TabsContent>
+            <TabsContent value="secondary">
+              <SecondaryMovieList />
+            </TabsContent>
+          </Tabs> */}
+          
           <div className="mt-8 text-center">
             <a
               href="https://ko-fi.com/rahulhoque"
@@ -28,9 +42,9 @@ export default function Home() {
           </div>
         </div>
         <div className="flex h-14 items-center justify-center">
-        <div className="pl-4 flex items-center justify-center">
+          <div className="pl-4 flex items-center justify-center">
             <p>Made with ❤️ by <a href="https://www.linkedin.com/in/rahul-hoque/" target="_blank" rel="noopener noreferrer" className="text-decoration-line: underline"> Rahul Hoque</a></p>
-            </div>
+          </div>
         </div>
       </main>
     </MovieProvider>
